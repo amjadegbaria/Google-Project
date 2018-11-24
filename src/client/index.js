@@ -8,6 +8,20 @@ import Root from './Root';
 const root = document.querySelector('#root');
 const theme = createMuiTheme({
   direction: 'rtl',
+  typography: {
+    fontFamily: [
+      '-apple-system',
+      'BlinkMacSystemFont',
+      '"Segoe UI"',
+      'Rubik',
+      '"Helvetica Neue"',
+      'Arial',
+      'sans-serif',
+      '"Apple Color Emoji"',
+      '"Segoe UI Emoji"',
+      '"Segoe UI Symbol"',
+    ].join(','),
+  },
 });
 
 const mount = RootComponent => {
