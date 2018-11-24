@@ -7,16 +7,40 @@ import App from '../components/App';
 // chunking assets. Check out the following for more:
 // https://webpack.js.org/guides/migrating/#code-splitting-with-es2015
 
-const importHome = (nextState, cb) => {
-  import(/* webpackChunkName: "home" */ '../components/Home')
+const importSchedule = (nextState, cb) => {
+  import(/* webpackChunkName: "home" */ '../components/Schedule')
     .then(module => cb(null, module.default))
     .catch(e => {
       throw e;
     });
 };
 
-const importTools = (nextState, cb) => {
-  import(/* webpackChunkName: "tools" */ '../components/Tools')
+const importStudentsView = (nextState, cb) => {
+  import(/* webpackChunkName: "tools" */ '../components/StudentsView')
+    .then(module => cb(null, module.default))
+    .catch(e => {
+      throw e;
+    });
+};
+
+const importMentorsView = (nextState, cb) => {
+  import(/* webpackChunkName: "tools" */ '../components/MentorsView')
+    .then(module => cb(null, module.default))
+    .catch(e => {
+      throw e;
+    });
+};
+
+const importCoordinatorsView = (nextState, cb) => {
+  import(/* webpackChunkName: "tools" */ '../components/CoordinatorsView')
+    .then(module => cb(null, module.default))
+    .catch(e => {
+      throw e;
+    });
+};
+
+const importAdminView = (nextState, cb) => {
+  import(/* webpackChunkName: "tools" */ '../components/AdminView')
     .then(module => cb(null, module.default))
     .catch(e => {
       throw e;
@@ -27,8 +51,12 @@ const importTools = (nextState, cb) => {
 // https://github.com/reactjs/react-router/blob/master/docs/guides/DynamicRouting.md
 const routes = (
   <Route path="/" component={App}>
-    <IndexRoute getComponent={importHome} />
-    <Route path="tools" getComponent={importTools} />
+    <IndexRoute getComponent={importSchedule} />
+    <Route path="schedule" getComponent={importSchedule} />
+    <Route path="students" getComponent={importStudentsView} />
+    <Route path="mentors" getComponent={importMentorsView} />
+    <Route path="coordinators" getComponent={importCoordinatorsView} />
+    <Route path="admins" getComponent={importAdminView} />
   </Route>
 );
 
@@ -36,8 +64,8 @@ const routes = (
 // routes so we need to require them here as a workaround.
 // https://github.com/gaearon/react-hot-loader/issues/288
 if (module.hot) {
-  require('../components/Home'); // eslint-disable-line global-require
-  require('../components/Tools'); // eslint-disable-line global-require
+  require('../components/Schedule'); // eslint-disable-line global-require
+  require('../components/StudentsView'); // eslint-disable-line global-require
 }
 
 export default routes;

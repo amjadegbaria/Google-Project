@@ -1,4 +1,5 @@
 
+@import '../../shared-styles/globals';
 @import '../../shared-styles/variables';
 
 .header {
@@ -33,4 +34,9 @@
   height: 252px;
   margin: $padding auto;
   background: url('../../images/icon-kytLogo_large-252x252.svg');
+}
+
+a {
+  text-decoration: none !important;
+  color: red;
 }

@@ -2,8 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { withStyles } from '@material-ui/core/styles';
-import Link from 'react-router/lib/Link';
-import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Drawer from '@material-ui/core/Drawer';
 import AppBar from '@material-ui/core/AppBar';
@@ -12,10 +10,9 @@ import List from '@material-ui/core/List';
 import Typography from '@material-ui/core/Typography';
 import Divider from '@material-ui/core/Divider';
 import IconButton from '@material-ui/core/IconButton';
-import Badge from '@material-ui/core/Badge';
 import MenuIcon from '@material-ui/icons/Menu';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
-import NotificationsIcon from '@material-ui/icons/Notifications';
+import LogoutIcon from '@material-ui/icons/ExitToApp';
 
 import SidebarItems from '../SidebarItems';
 
@@ -32,10 +29,10 @@ const styles = theme => ({
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'flex-end',
-    padding: '0 8px',
+    padding: '8px 8px 7px 8px',
   },
   appBar: {
-    zIndex: 1,
+    zIndex: theme.zIndex.drawer + 1,
     transition: theme.transitions.create(['width', 'margin'], {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen,
@@ -114,7 +111,7 @@ class App extends React.Component {
   }
 
   render() {
-    const { classes } = this.props;
+    const { classes, children } = this.props;
 
     return (
       <div className={classes.root}>
@@ -145,9 +142,7 @@ class App extends React.Component {
               מערכת שעות
             </Typography>
             <IconButton color="inherit">
-              <Badge badgeContent={4} color="secondary">
-                <NotificationsIcon />
-              </Badge>
+              <LogoutIcon />
             </IconButton>
           </Toolbar>
         </AppBar>
@@ -170,12 +165,12 @@ class App extends React.Component {
         </Drawer>
         <main className={classes.content}>
           <div className={classes.appBarSpacer} />
-          <Typography variant="h4" gutterBottom component="h2">
-            Orders
-          </Typography>
-          <Typography variant="h4" gutterBottom component="h2">
-            Products
-          </Typography>
+
+          {/* Page content */}
+          <div>
+            {children}
+          </div>
+          {/* END Page content */}
         </main>
       </div>
     );
@@ -183,6 +178,7 @@ class App extends React.Component {
 }
 
 App.propTypes = {
+  children: PropTypes.node.isRequired,
   classes: PropTypes.object.isRequired,
 };
 
